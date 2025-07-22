@@ -63,3 +63,41 @@ Look at the example below-
 
 
 ## Refer foundation_lab3 for the lab on Resources.
+
+## Refer foundation_lab4 for lab on tools.
+In this lab we see use of tools using the native openai api.
+
+We can also pass tools along with claude native api.
+
+code-
+```
+import anthropic
+
+client = anthropic.Anthropic()
+
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    tools=[
+        {
+            "name": "get_weather",
+            "description": "Get weather information for a location",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "City name"
+                    }
+                },
+                "required": ["location"]
+            }
+        }
+    ],
+    messages=[
+        {"role": "user", "content": "What's the weather like in San Francisco?"}
+    ]
+)
+```
+
+
