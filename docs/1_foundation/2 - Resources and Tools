@@ -1,0 +1,65 @@
+# Agentic AI Frameworks -
+
+There are various agentic AI frameworks that we can use to build agentic AI. Lets see them starting with the least complex to most complex.
+
+1. No Framework -
+Here we do not use any framework and therefore directly call the LLMs usign native api calls like we did in our foundation/lab_1.
+The benefit here is there is no abstraction under the hood therefore we have full control to see exactly what is going on in detail.
+
+With No frameworks we can use MCP to connect to other data/tools.
+
+
+2. OpenAIAgents SDK / Crew AI -
+Next level in the complexity chart is openai agents sdk and crewAI. Both of them are lightweight.
+CrewAI is low code way to writing agents and we can use configurations through YAML files to design our agents.
+
+3. Langgraph / Autogen -
+These are heavyweight and more complexy compared to the others.
+But both have more power because of the added complexity.
+With these systems we sign up for the echosystem of these technologies
+
+![alt text](image-13.png)
+
+
+
+# Resources -
+Resources are a way using which we can get more out of our agents.
+Resources is basically providing the LLMs with more context to improve it's expertise.
+
+This is basically grab some relevant data and pass it into the prompt.
+
+It is just about putting extra content or information in the prompt we send.
+![alt text](image-14.png)
+
+
+# Tools -
+We can provide tools to the LLMs so say them that here is the problem and here are the tools that you can use to solve these problems.
+![alt text](image-15.png)
+
+But actually is going on ?
+
+In theory,
+We have written some code.
+Our code is sending a prompt to the LLM.
+That LLM is given the ability to exeute a tool like calculator or a sequel query etc.
+![alt text](image-16.png)
+
+
+**But In practice, it is a little different. Tool calling is all about this -**
+Our code passes the prompt to the LLM and it says to the LLM , tell us if you would want us to take some action like calling an api or querying a database.
+If you tell me to call an api , i will call the api and pass the response to you .
+So in the prompt we list down all the action that the llm can ask for to the code and then ask the llm to respond in json for any of the action that it wants to to do.
+Then when the LLM wants to do something , it will respond in the json response on the action that the LLM wants us to take.
+
+In the end we will write our code similar to this-
+
+if llm_response["query_db"]:
+    then response = query_db()
+
+call_llm(response)
+
+Look at the example below-
+![alt text](image-17.png)
+
+
+## Refer foundation_lab3 for the lab on Resources.
